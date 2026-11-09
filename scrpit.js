@@ -20,49 +20,81 @@ function getComputerChoice(){
 function getHumanChoice(){
   let humanChoice = prompt("Enter your choice'Rock','Paper','Scissors'");
   let humanNumber = null;
-  if(humanChoice.toLocaleLowerCase() === "Rock".toLocaleLowerCase()){
+  if(humanChoice.toLowerCase() === "Rock".toLowerCase()){
     humanNumber = 1;
-  } else if(humanChoice.toLocaleLowerCase() === "Paper".toLocaleLowerCase()){
+  } else if(humanChoice.toLowerCase() === "Paper".toLowerCase()){
     humanNumber = 2;
   }
-  else if(humanChoice.toLocaleLowerCase() === "Scissors".toLocaleLowerCase()){
+  else if(humanChoice.toLowerCase() === "Scissors".toLowerCase()){
     humanNumber = 3;
   }
   return humanNumber;
 }
 
+
+
 function playRound(computerChoice,humanChoice) {
   if(computerChoice === 1 && humanChoice === 2){
-    console.log("You win'Paper beat Rock'")
+    console.log("You win'Paper beat Rock'");
+    humanScore++;
+    return;
   }
   else if(computerChoice === 1 && humanChoice === 3){
     console.log("You lose'Paper beat Scissors'")
+    computerScore++;
+    return;
   }
   else if(computerChoice === 1 && humanChoice === 1){
-    console.log("Draw'Rock with Rock'")
+    console.log("Draw'Rock with Rock'");
+    return;
   }
   else if(computerChoice === 2 && humanChoice === 2){
-    console.log("Draw'Paper with Paper'")
+    console.log("Draw'Paper with Paper'");
+    return;
   }
   else if(computerChoice === 2 && humanChoice === 3){
-    console.log("You lose'Scissors beat Paper'")
+    console.log("You lose'Scissors beat Paper'");
+    computerScore++;
+    return;
   }
   else if(computerChoice === 2 && humanChoice === 1){
     console.log("You Lose'Paper beat Rock'")
+    computerScore++;
+    return;
   }
   else if(computerChoice === 3 && humanChoice === 1){
     console.log("You Win'Rock beat Scissors'")
+    humanScore++;
+    return;
   }
   else if(computerChoice === 3 && humanChoice === 2){
     console.log("You Lose'Scissors beat Paper'")
+    computerScore++;
+    return
   }
   else if(computerChoice === 3 && humanChoice === 3){
-    console.log("Draw'Scissors with Scissors'")
+    console.log("Draw'Scissors with Scissors'");
+    return;
   }
 }
 
 
+function playGame () {
+  /* let computerScore = 0;
+  let humanScore = 0; */
+  for(let i = 1 ; i < 5; i++){
+    getHumanChoice([i]);
+    getComputerChoice([i]);
+    playRound(computerSelection[i],humanSelection[i]);
+  }
+  
+  
+}
+
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-playRound(computerSelection,humanSelection);
+playGame()
+
+
+
