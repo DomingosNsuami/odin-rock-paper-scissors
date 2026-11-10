@@ -1,17 +1,9 @@
 
-let computerScore = 0;
-let humanScore = 0;
+
 
 
 function getComputerChoice(){
   let computerNumber = Math.floor(Math.random()*3)+1;
-  /* if(computerNumber == 1){
-    console.log("Rock");
-  }else if(computerNumber == 2) {
-    console.log("Paper");
-  }else {
-    console.log("Scissors");
-  } */
   return computerNumber;
  
 }
@@ -33,7 +25,13 @@ function getHumanChoice(){
 
 
 
-function playRound(computerChoice,humanChoice) {
+
+function playGame () {
+  let computerScore = 0;
+  let humanScore = 0;
+  let tie = 0;
+
+  function playRound(computerChoice,humanChoice) {
   if(computerChoice === 1 && humanChoice === 2){
     console.log("You win'Paper beat Rock'");
     humanScore++;
@@ -45,11 +43,13 @@ function playRound(computerChoice,humanChoice) {
     return;
   }
   else if(computerChoice === 1 && humanChoice === 1){
-    console.log("Draw'Rock with Rock'");
+    console.log("Tie'Rock with Rock'");
+    tie++
     return;
   }
   else if(computerChoice === 2 && humanChoice === 2){
-    console.log("Draw'Paper with Paper'");
+    console.log("Tie'Paper with Paper'");
+    tie++
     return;
   }
   else if(computerChoice === 2 && humanChoice === 3){
@@ -73,26 +73,30 @@ function playRound(computerChoice,humanChoice) {
     return
   }
   else if(computerChoice === 3 && humanChoice === 3){
-    console.log("Draw'Scissors with Scissors'");
+    console.log("Tie'Scissors with Scissors'");
+    tie++
     return;
   }
 }
-
-
-function playGame () {
-  /* let computerScore = 0;
-  let humanScore = 0; */
-  for(let i = 1 ; i < 5; i++){
-    getHumanChoice([i]);
-    getComputerChoice([i]);
-    playRound(computerSelection[i],humanSelection[i]);
+  for(let i = 0 ; i < 5; i++){
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(computerSelection,humanSelection);
+    
   }
+   if(computerScore > humanScore) {
+    console.log("You lose The Game")
+   }else if(humanScore > computerScore) {
+      console.log("you win")
+   }
+  console.log(`Computer: ${computerScore}, You: ${humanScore} Ties: ${tie}`);
+ 
+  
   
   
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+
 
 playGame()
 
