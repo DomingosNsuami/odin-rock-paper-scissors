@@ -1,0 +1,84 @@
+const rockEl = document.querySelector("#rock");
+const paperEl = document.querySelector("#paper");
+const scissorsEl = document.querySelector("#scissors");
+const resultText = document.querySelector(".text");
+
+function getComputerChoice() {
+  let computerNumber = Math.floor(Math.random() * 3) + 1;
+  return computerNumber;
+}
+
+rockEl.addEventListener("click", () => {
+  playRound(getComputerChoice(), 1);
+});
+paperEl.addEventListener("click", () => {
+  playRound(getComputerChoice(), 2);
+});
+scissorsEl.addEventListener("click", () => {
+  playRound(getComputerChoice(), 3);
+});
+
+// function getHumanChoice() {
+//   let humanChoice = prompt("Enter your choice'Rock','Paper','Scissors'");
+//   let humanNumber = null;
+//   if (humanChoice.toLowerCase() === "Rock".toLowerCase()) {
+//     humanNumber = 1;
+//   } else if (humanChoice.toLowerCase() === "Paper".toLowerCase()) {
+//     humanNumber = 2;
+//   } else if (humanChoice.toLowerCase() === "Scissors".toLowerCase()) {
+//     humanNumber = 3;
+//   }
+//   return humanNumber;
+// }
+
+let computerScore = 0;
+let humanScore = 0;
+let tie = 0;
+
+function playRound(computerChoice, humanChoice) {
+  // 1. Ties
+  if (computerChoice === 1 && humanChoice === 1) {
+    resultText.textContent = "Tie 'Rock with Rock'";
+    tie++;
+  } else if (computerChoice === 2 && humanChoice === 2) {
+    resultText.textContent = "Tie 'Paper with Paper'";
+    tie++;
+  } else if (computerChoice === 3 && humanChoice === 3) {
+    resultText.textContent = "Tie 'Scissors with Scissors'";
+    tie++;
+
+    // 2. huma win (humanScore)
+  } else if (computerChoice === 1 && humanChoice === 2) {
+    resultText.textContent = "You win 'Paper beats Rock'";
+    humanScore++;
+  } else if (computerChoice === 2 && humanChoice === 3) {
+    resultText.textContent = "You win 'Scissors beats Paper'";
+    humanScore++;
+  } else if (computerChoice === 3 && humanChoice === 1) {
+    resultText.textContent = "You win 'Rock beats Scissors'";
+    humanScore++;
+
+    // 3. computes win (computerScore)
+  } else if (computerChoice === 1 && humanChoice === 3) {
+    resultText.textContent = "You lose 'Rock beats Scissors'";
+    computerScore++;
+  } else if (computerChoice === 2 && humanChoice === 1) {
+    resultText.textContent = "You lose 'Paper beats Rock'";
+    computerScore++;
+  } else if (computerChoice === 3 && humanChoice === 2) {
+    resultText.textContent = "You lose 'Scissors beats Paper'";
+    computerScore++;
+  }
+
+  const pontuation = document.querySelector(".actual-pontuation")
+  pontuation.textContent = ` Human Score: ${humanScore} | Tie: ${tie} | Computer Score: ${computerScore}`;
+
+  if(humanScore == 5) {
+    pontuation.textContent = "You win!";
+  }
+  else if(computerScore == 5) {
+    pontuation.textContent = "You lose!";
+  }
+}
+
+
