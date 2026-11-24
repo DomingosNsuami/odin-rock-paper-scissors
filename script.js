@@ -39,46 +39,60 @@ function playRound(computerChoice, humanChoice) {
   // 1. Ties
   if (computerChoice === 1 && humanChoice === 1) {
     resultText.textContent = "Tie 'Rock with Rock'";
+    resultText.style.color = "";
     tie++;
   } else if (computerChoice === 2 && humanChoice === 2) {
     resultText.textContent = "Tie 'Paper with Paper'";
+    resultText.style.color = "";
     tie++;
   } else if (computerChoice === 3 && humanChoice === 3) {
     resultText.textContent = "Tie 'Scissors with Scissors'";
+    resultText.style.color = "";
     tie++;
 
     // 2. huma win (humanScore)
   } else if (computerChoice === 1 && humanChoice === 2) {
     resultText.textContent = "You win 'Paper beats Rock'";
+    getGreenColor(resultText)
     humanScore++;
   } else if (computerChoice === 2 && humanChoice === 3) {
     resultText.textContent = "You win 'Scissors beats Paper'";
+    getGreenColor(resultText)
     humanScore++;
   } else if (computerChoice === 3 && humanChoice === 1) {
     resultText.textContent = "You win 'Rock beats Scissors'";
+    getGreenColor(resultText)
     humanScore++;
 
     // 3. computes win (computerScore)
   } else if (computerChoice === 1 && humanChoice === 3) {
     resultText.textContent = "You lose 'Rock beats Scissors'";
+    getRedColor(resultText)
     computerScore++;
   } else if (computerChoice === 2 && humanChoice === 1) {
     resultText.textContent = "You lose 'Paper beats Rock'";
+    getRedColor(resultText)
     computerScore++;
   } else if (computerChoice === 3 && humanChoice === 2) {
     resultText.textContent = "You lose 'Scissors beats Paper'";
+    getRedColor(resultText)
     computerScore++;
   }
 
-  const pontuation = document.querySelector(".actual-pontuation")
+  const pontuation = document.querySelector(".actual-pontuation");
   pontuation.textContent = ` Human Score: ${humanScore} | Tie: ${tie} | Computer Score: ${computerScore}`;
 
-  if(humanScore == 5) {
+  if (humanScore == 5) {
     pontuation.textContent = "You win!";
-  }
-  else if(computerScore == 5) {
+  } else if (computerScore == 5) {
     pontuation.textContent = "You lose!";
   }
 }
 
+function getGreenColor(text){
+  return text.style.color = "rgba(48, 163, 13, 0.88)"
+}
 
+function getRedColor(text){
+  return text.style.color = "rgba(225, 12, 12, 0.88)"
+}
