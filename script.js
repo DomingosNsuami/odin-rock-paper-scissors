@@ -1,7 +1,17 @@
+const StartContainer = document.querySelector(".start")
+const gameContainer = document.querySelector(".game")
+const StartButtom = document.querySelector(".startButton")
 const rockEl = document.querySelector("#rock");
 const paperEl = document.querySelector("#paper");
 const scissorsEl = document.querySelector("#scissors");
 const resultText = document.querySelector(".text");
+
+StartButtom.addEventListener("click",startGame);
+
+function startGame(){
+  StartContainer.classList.remove("active")
+  gameContainer.classList.add("active","fadeUp")
+}
 
 function getComputerChoice() {
   let computerNumber = Math.floor(Math.random() * 3) + 1;
@@ -84,8 +94,14 @@ function playRound(computerChoice, humanChoice) {
 
   if (humanScore == 5) {
     pontuation.textContent = "You win!";
+    humanScore = 0;
+    computerScore = 0
+    tie = 0
   } else if (computerScore == 5) {
     pontuation.textContent = "You lose!";
+    humanScore = 0;
+    computerScore = 0
+    tie = 0
   }
 }
 
