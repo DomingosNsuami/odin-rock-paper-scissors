@@ -14,6 +14,14 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -25,28 +33,46 @@ main {
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.144);
 }
-h1 {
+
+.active {
+  display: block;
+}
+h1,h2 {
+  text-align: center;
   color: blueviolet;
   margin-bottom: 1rem;
 }
 
-.game-container {
+.startDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  border: 2px dotted blueviolet;
-  width: 100%;
   height: 100%;
 }
+
+.fadeUp {
+  animation: fadeUp 0.5s ease  ;
+}
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+}
+
 .player-buttons {
   width: 100%;
   height: 50%;
   text-align: center;
 }
 
-.player-buttons button {
+ button {
   border: none;
   padding: 10px 35px;
   color: blueviolet;
@@ -62,7 +88,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.player-buttons button:hover {
+ button:hover {
   background-color: blueviolet;
   color: white;
 }
